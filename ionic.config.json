@@ -1,0 +1,7 @@
+{
+  "name": "KKRMap",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
