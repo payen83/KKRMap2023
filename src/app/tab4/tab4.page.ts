@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
-
 @Component({
   selector: 'app-tab4',
   templateUrl: './tab4.page.html',
@@ -12,22 +12,52 @@ export class Tab4Page implements OnInit {
   public coords: any = { lat: '', long: '' };
   @ViewChild('map')
   mapRef!: ElementRef<HTMLElement>;
-  newMap!: GoogleMap;
-  constructor() { }
+  newMap!: any;
+  placesList: Array<any> = [];
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.getCoords();
-    console.log('load GPS');
+    // console.log('load GPS');
+  }
+
+  async doSearch(event: any){
+    let query: string = event.detail.value;
+    try {
+      let response: any = await this.searchPlace(query);
+      if(response) {
+        this.placesList = response.results;
+        console.log(this.placesList);
+      }
+    } catch(error: any){
+      console.log(error.message);
+    }
+
+  }
+
+  searchPlace(query_: string){
+    let searchQuery: string = encodeURI(query_);
+    let url: string = 'https://maps.googleapis.com/maps/api/place/textsearch/json?location='+ this.coords.latitude +'%2C'+ this.coords.longitude +'&query=' + searchQuery + '&radius=10&key=AIzaSyDPWB4YRsUM0fcoW5bKSXeAfr8fl1NkQ-k';
+
+    return new Promise((resolve, reject) => {
+      this.httpClient.get(url)
+      .subscribe({
+        next: (response: any) => { resolve(response) },
+        error: (error: any) => { reject(error) }
+      })
+    })
   }
 
   ionViewWillEnter(){
-    this.createMap();
-    console.log('load Map');
+    this.getCoords();
+
+    // this.createMap();
+
+    // console.log('load Map');
   }
 
   async createMap(){
     this.newMap = await GoogleMap.create({
-      id: 'map',
+      id: 'my-map',
       element: this.mapRef.nativeElement,
       apiKey: environment.apiKey,
       config: {
@@ -38,7 +68,9 @@ export class Tab4Page implements OnInit {
         zoom: 15,
       },
     });
-    console.log(this.coords);
+
+    await this.setMarker(this.coords);
+    // console.log(this.coords);
   }
 
   async setMarker(coords: any){
@@ -63,6 +95,7 @@ export class Tab4Page implements OnInit {
       if(coordinates){
         console.log(coordinates);
         this.coords = coordinates.coords;
+        this.createMap();
         this.setMarker(this.coords);
         // this.coords = coordinates.
       }

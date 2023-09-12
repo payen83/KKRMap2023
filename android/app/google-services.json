@@ -1,0 +1,29 @@
+{
+    "project_info": {
+      "project_number": "754872755155",
+      "project_id": "kkrproject-1510718072632",
+      "storage_bucket": "kkrproject-1510718072632.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:754872755155:android:759663d6afb372c13dc526",
+          "android_client_info": {
+            "package_name": "com.ferdy.kkrmap"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyCwTxYV0pDKataHIRm4w4mFXzJ2i2c1q_0"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
