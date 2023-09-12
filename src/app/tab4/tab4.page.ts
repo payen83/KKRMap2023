@@ -49,9 +49,7 @@ export class Tab4Page implements OnInit {
 
   ionViewWillEnter(){
     this.getCoords();
-
     // this.createMap();
-
     // console.log('load Map');
   }
 
@@ -95,14 +93,11 @@ export class Tab4Page implements OnInit {
       if(coordinates){
         console.log(coordinates);
         this.coords = coordinates.coords;
-        this.createMap();
-        this.setMarker(this.coords);
-        // this.coords = coordinates.
+        await this.createMap();
+        await this.setMarker(this.coords);
       }
     } catch(error: any) {
       console.log('Error => ', error.message);
     }
   }
-
-
 }

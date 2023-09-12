@@ -2,12 +2,12 @@
   <ion-toolbar>
     <ion-title>Map</ion-title>
   </ion-toolbar>
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-searchbar [debounce]="2000" 
     (ionInput)="doSearch($event)" 
     search-icon="search-circle" 
     placeholder="Type your search.."></ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -20,5 +20,4 @@
   <p>Latitude: {{ coords.latitude }}</p>
   <p>Longitude: {{ coords.longitude }}</p> -->
   <capacitor-google-map id="map" #map></capacitor-google-map>
-
 </ion-content>

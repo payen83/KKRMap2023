@@ -13,10 +13,19 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor() {
+  constructor(public platform: Platform) {
+
+    this.platform.ready().then(() => {
+      this.init();
+    });
+
   }
 
-  ngOnInit() { 
+  ngOnInit() {
+    
+  }
+
+  init() { 
     PushNotifications.requestPermissions().then(result => {
       if (result.receive === 'granted') {
         // Register with Apple / Google to receive push via APNS/FCM
@@ -30,6 +39,7 @@ export class AppComponent implements OnInit {
     PushNotifications.addListener('registration',
       (token: Token) => {
         alert('Push registration success, token: ' + token.value);
+        console.log('token ==> ', token.value)
       }
     );
 

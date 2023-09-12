@@ -32,9 +32,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
-                    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDPWB4YRsUM0fcoW5bKSXeAfr8fl1NkQ-k"/>
-
         </provider>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDPWB4YRsUM0fcoW5bKSXeAfr8fl1NkQ-k"/>
     </application>
 
     <!-- Permissions -->
@@ -43,4 +42,5 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location.gps" />
+
 </manifest>
